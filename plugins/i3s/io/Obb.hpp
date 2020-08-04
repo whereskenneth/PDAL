@@ -34,6 +34,53 @@
 
 #pragma once
 
+#include <list>
+#include <memory>
+#include <mutex>
+#include <condition_variable>
+
+#include <pdal/JsonFwd.hpp>
+#include <pdal/util/ThreadPool.hpp>
+
+namespace pdal
+{
+namespace i3s
+{
+
+using Page = NL::json;
+using PagePtr = std::shared_ptr<NL::json>;
+using FetchFunction = std::function<std::string(std::string)>;
+
+class PageManager
+{
+    struct PageEntry
+    {
+        int index;
+        PagePtr page;
+    };
+
+public:
+    PageManager(int cacheSize, int threads, int indexFactor, FetchFunction fetch);
+
+    void fetchPage(int index);
+    PagePtr getPage(int index);
+
+private:
+    ThreadPool m_pool;
+    size_t m_cacheSize;
+    int m_indexFactor;
+    FetchFunction m_fetch;
+    std::list<PageEntry> m_cache;
+    std::mutex m_mutex;
+    std::condition_variable m_cv;
+
+    PagePtr getPageLocked(int index);
+    void evict();
+};
+
+} //namespace i3s
+=======
+>>>>>>> origin/master
 #include <Eigen/Geometry>
 #include <pdal/JsonFwd.hpp>
 #include <pdal/util/Utils.hpp>
