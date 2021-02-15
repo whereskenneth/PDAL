@@ -49,11 +49,12 @@ namespace pdal
 class Charbuf : public std::streambuf
 {
 public:
+    PDAL_DLL ~Charbuf() override;
+
     /**
       Construct an empty Charbuf.
     */
-    PDAL_DLL Charbuf() : m_bufOffset(0)
-        {}
+    PDAL_DLL Charbuf();
 
     /**
       Construct a Charbuf that wraps a byte vector.
@@ -61,8 +62,7 @@ public:
       \param v  Byte vector to back streambuf.
       \param bufOffset  Offset in vector (ignore bytes before offset).
     */
-    PDAL_DLL Charbuf (std::vector<char>& v, pos_type bufOffset = 0)
-        { initialize(v.data(), v.size(), bufOffset); }
+    PDAL_DLL Charbuf (std::vector<char>& v, pos_type bufOffset = 0);
 
     /**
       Construct a Charbuf that wraps a byte buffer.
@@ -71,8 +71,7 @@ public:
       \param count  Size of buffer.
       \param bufOffset  Offset in vector (ignore bytes before offset).
     */
-    PDAL_DLL Charbuf (char *buf, size_t count, pos_type bufOffset = 0)
-        { initialize(buf, count, bufOffset); }
+    PDAL_DLL Charbuf (char *buf, size_t count, pos_type bufOffset = 0);
 
     /**
       Set a buffer to back a Charbuf.

@@ -306,7 +306,7 @@ template<class T2>
 int SparseMatrix<T>::SolveGS( const std::vector< std::vector< int > >& mcIndices , const SparseMatrix<T>& M , ConstPointer( T2 ) diagonal , ConstPointer( T2 ) b , Pointer( T2 ) x , bool forward , int threads )
 {
 	int sum=0;
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(__MINGW32__) 
 #define SetOMPParallel __pragma( omp parallel for num_threads( threads ) )
 #else // !_WIN32
 #define SetOMPParallel _Pragma( "omp parallel for num_threads( threads )" )

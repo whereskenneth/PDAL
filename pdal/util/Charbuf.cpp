@@ -37,6 +37,22 @@
 namespace pdal
 {
 
+Charbuf::~Charbuf() {
+
+}
+
+Charbuf::Charbuf() {
+    m_bufOffset = 0;
+}
+
+Charbuf::Charbuf(std::vector<char>& v, pos_type bufOffset)
+{
+    initialize(v.data(), v.size(), bufOffset);
+}
+
+Charbuf::Charbuf (char *buf, size_t count, pos_type bufOffset) {
+    initialize(buf, count, bufOffset);
+}
 
 void Charbuf::initialize(char *buf, size_t count, std::ios::pos_type bufOffset)
 {

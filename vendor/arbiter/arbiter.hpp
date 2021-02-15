@@ -3130,8 +3130,13 @@ inline std::string decompress(const char* data, std::size_t size)
 
 #pragma once
 
-#if defined(_WIN32) || defined(WIN32) || defined(_MSC_VER)
+#if defined(_WIN32) || defined(WIN32) || defined(_MSC_VER) || defined \
+    (__MINGW32__)
 #define ARBITER_WINDOWS
+#endif
+
+#ifdef __MINGW32__
+#include <sec_api/stdlib_s.h>
 #endif
 
 #ifndef ARBITER_DLL

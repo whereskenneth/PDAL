@@ -38,7 +38,7 @@
 // The original work was released under the Apache License v2.
 
 #ifdef _WIN32
-  #include <Windows.h>
+  #include <windows.h>
 #else
   #include <dlfcn.h>
 #endif
@@ -117,7 +117,7 @@ void *DynamicLibrary::getSymbol(const std::string& symbol)
 
     void *sym;
 #ifdef _WIN32
-    sym = ::GetProcAddress((HMODULE)m_handle, symbol.c_str());
+    sym = (void *)::GetProcAddress((HMODULE)m_handle, symbol.c_str());
 #else
     sym = ::dlsym(m_handle, symbol.c_str());
 #endif

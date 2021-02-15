@@ -39,9 +39,13 @@
 
 #pragma once
 
-// This is for M_PI on Windows.
+// This is for M_PI on Windows
 #define _USE_MATH_DEFINES
-#include <math.h>
+#include <cmath>
+
+//#define M_PI            3.14159265358979323846
+//#define M_PIl M_PI
+
 
 #include <fstream>
 #include <iostream>

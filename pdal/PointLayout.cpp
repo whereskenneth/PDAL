@@ -342,6 +342,8 @@ MetadataNode PointLayout::toMetadata() const
     return root;
 }
 
+PointLayout::~PointLayout() {}
+
 } // namespace pdal
 
 

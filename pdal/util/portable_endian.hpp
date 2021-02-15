@@ -54,6 +54,9 @@
 #   include <winsock2.h>
                      
 #   if BYTE_ORDER == LITTLE_ENDIAN
+
+#       define htonll(x) ((1==htonl(1)) ? (x) : ((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
+#       define ntohll(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32))
                       
 #       define htobe16 htons
 #       define htole16(x) (x)

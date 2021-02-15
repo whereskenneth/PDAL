@@ -893,7 +893,7 @@ const drivers::Http& Endpoint::getHttpDriver() const
 #include <sys/stat.h>
 #else
 #define UNICODE
-#include <Shlwapi.h>
+#include <shlwapi.h>
 #include <iterator>
 #include <locale>
 #include <codecvt>
@@ -4816,7 +4816,7 @@ std::unique_ptr<std::string> env(const std::string& var)
 {
     std::unique_ptr<std::string> result;
 
-#ifndef ARBITER_WINDOWS
+#ifndef _MSC_VER
     if (const char* c = getenv(var.c_str())) result.reset(new std::string(c));
 #else
     char* c(nullptr);

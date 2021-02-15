@@ -53,7 +53,7 @@ public:
       Default constructor.
     */
     PDAL_DLL PointLayout();
-    PDAL_DLL virtual ~PointLayout() {}
+    PDAL_DLL virtual ~PointLayout();
 
     /**
       Mark a layout as finalized.  Dimensions can't be added to a finalized

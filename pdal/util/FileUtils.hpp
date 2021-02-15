@@ -44,7 +44,7 @@
 #include <vector>
 
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #include "pdal_util_export.hpp"
@@ -277,8 +277,7 @@ namespace FileUtils
     struct PDAL_DLL MapContext
     {
     public:
-        MapContext() : m_fd(-1), m_addr(nullptr)
-        {}
+        MapContext();
 
         void *addr() const
         { return m_addr; }

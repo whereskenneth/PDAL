@@ -42,6 +42,10 @@
 
 #include "GreedyProjection.hpp"
 
+#ifndef M_PIl
+#define M_PIl M_PI
+#endif
+
 namespace pdal
 {
 
@@ -69,7 +73,7 @@ void GreedyProjection::addArgs(ProgramArgs& args)
     args.add("num_neighbors", "Number of nearest neighbors to consider",
         nnn_, 100);
     args.add("min_angle", "Minimum angle for created triangles",
-        minimum_angle_, M_PI / 18);  // 10 degrees default
+        minimum_angle_, M_PIl / 18);  // 10 degrees default
     args.add("max_angle", "Maximum angle for created triangles",
         maximum_angle_, 2 * M_PI / 3);  // 120 degrees default
     args.add("eps_angle", "Max normal difference angle for triangulation "
